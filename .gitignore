@@ -7,6 +7,22 @@
 *.jar
 *.war
 *.ear
+#config, class
+.project
+.classpath
+.tomcatplugin
+.factorypath
+.mymetadata
+.settings/*
+target/*
+src/main/webapp/WEB-INF/classes/*
+/target
+/.apt_generated
+test-output/*
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# idea
+.idea
+*.iml
