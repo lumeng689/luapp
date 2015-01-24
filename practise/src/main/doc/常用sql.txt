@@ -1,0 +1,5 @@
+1. 在mysql中增加用户：
+   grant select,insert,update,delete on test.* to luapp@localhost Identified by "test123";
+   #grant select,insert,update,delete on test.* to luapp@"%" Identified by "test123";
+
+2.

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+    xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd"
+    default-lazy-init="true">
+
+    <description>Spring数据库相关配置 </description>
+
+    <bean id="propertyConfigurer"
+        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath*:jdbc.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+    <context:component-scan base-package="org.luapp.cms">
+        <context:exclude-filter type="annotation"
+            expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <!-- 国际化消息 -->
+    <bean id="messageSource"
+        class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 其中basename用来指定properties文件的通用名 -->
+        <property name="basename" value="i18n/messages" />
+        <property name="useCodeAsDefaultMessage" value="true" />
+    </bean>
+
+    <bean id="messageHelper" class="org.luapp.cms.utils.MessageHelper">
+        <property name="messageSource">
+            <ref bean="messageSource" />
+        </property>
+    </bean>
+
+    <!-- MyBatis配置 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+        <property name="typeAliasesPackage" value="org.luapp.cms.entities" />
+        <!-- 显式指定Mapper文件位置 -->
+        <property name="mapperLocations"
+            value="classpath:/mybatis/*Mapper.xml" />
+    </bean>
+
+    <!-- 扫描Mybatis Dao -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="org.luapp.cms.repositories" />
+        <property name="annotationClass"
+            value="org.luapp.cms.repositories.MyBatisRepository" />
+    </bean>
+
+    <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
+        <property name="resultSetLogEnabled" value="false" />
+    </bean>
+
+    <bean id="stat-filter" class="com.alibaba.druid.filter.stat.StatFilter">
+        <property name="slowSqlMillis" value="10000" />
+        <property name="logSlowSql" value="true" />
+        <!-- 将没有参数化的sql合并统计
+            select * from t where id = 1
+            select * from t where id = 2
+            select * from t where id = 3
+                会被合并为 select * from t where id = ? -->
+        <property name="mergeSql" value="true" />
+    </bean>
+
+    <!-- Druid JDBC连接池 -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+        init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClassName}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="initialSize" value="5" />
+        <property name="minIdle" value="5" />
+        <property name="maxActive" value="5" />
+        <!-- 配置获取连接等待超时的时间 -->
+        <property name="maxWait" value="60000" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <property name="poolPreparedStatements" value="false" />
+        <property name="defaultAutoCommit" value="false" />
+        <!-- 打开removeAbandoned功能 -->
+        <property name="removeAbandoned" value="true" />
+        <!-- 1800秒，也就是30分钟 -->
+        <property name="removeAbandonedTimeout" value="1800" />
+        <!-- 关闭abanded连接时输出错误日志 -->
+        <property name="logAbandoned" value="true" />
+        <property name="proxyFilters">
+            <list>
+                <ref bean="stat-filter" />
+                <ref bean="log-filter" />
+            </list>
+        </property>
+    </bean>
+
+<!--     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" -->
+<!--         destroy-method="close"> -->
+<!--         <property name="driverClassName" value="${jdbc.driverClassName}" /> -->
+<!--         <property name="url" value="${jdbc.url}" /> -->
+<!--         <property name="username" value="${jdbc.username}" /> -->
+<!--         <property name="password" value="${jdbc.password}" /> -->
+        <!--initialSize: 初始化连接 -->
+<!--         <property name="initialSize" value="50" /> -->
+        <!--maxIdle: 最大空闲连接 -->
+<!--         <property name="maxIdle" value="100" /> -->
+        <!--minIdle: 最小空闲连接 -->
+<!--         <property name="minIdle" value="10" /> -->
+        <!--maxActive: 最大连接数量 -->
+<!--         <property name="maxActive" value="500" /> -->
+        <!-- 打开空闲对象检查 -->
+<!--         <property name="testWhileIdle" value="true" /> -->
+        <!-- 每N毫秒秒检查一次连接池中空闲的连接 -->
+<!--         <property name="timeBetweenEvictionRunsMillis" value="360000" /> -->
+        <!-- 连接池中连接可空闲的时间 -->
+<!--         <property name="minEvictableIdleTimeMillis" value="1800000" /> -->
+        <!--removeAbandoned: 是否自动回收超时连接 -->
+<!--         <property name="removeAbandoned" value="true" /> -->
+        <!--removeAbandonedTimeout: 超过时间限制，回收没有用(废弃)的连接(以秒数为单位,默认300) -->
+<!--         <property name="removeAbandonedTimeout" value="180" /> -->
+        <!--maxWait: 超时等待时间以毫秒为单位 -->
+<!--         <property name="maxWait" value="6000" /> -->
+        <!--检查的sql -->
+<!--         <property name="validationQuery" value="SELECT 1" /> -->
+        <!-- <property name="testOnBorrow" value="true"/> -->
+<!--     </bean> -->
+
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="get*"   propagation="REQUIRED" read-only="true"/>
+            <tx:method name="query*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="list*"  propagation="REQUIRED" read-only="true"/>
+            <tx:method name="add*"   propagation="REQUIRED" />
+            <tx:method name="del*"   propagation="REQUIRED" />
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>
+
+    <aop:config>
+      <aop:pointcut id="txServiceOperation" expression="execution(public * org.luapp.cms.services.*Service.*(..))" />
+      <aop:advisor advice-ref="txAdvice" pointcut-ref="txServiceOperation"/>
+    </aop:config>
+
+</beans>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace必须指向Dao接口 -->
+<mapper namespace="org.luapp.cms.repositories.UserDao">
+	<!--获取用户-->
+	<select id="get" parameterType="long" resultType="TUser">
+		select id, loginId, name, mail
+		from t_user
+		where id=#{id}
+	</select>
+
+	<!-- 查询用户 -->
+	<select id="search" parameterType="map" resultType="TUser">
+		select id, loginId, name, mail
+		from t_user
+		<where>
+			 1=1
+			<if test="name != null">
+				and name=#{name}
+			</if>
+		</where>
+	</select>
+
+	<!-- 插入用户-->
+	<insert id="save" parameterType="TUser" useGeneratedKeys="true" keyProperty="id">
+		insert into t_user (
+		loginId, name, password, mail)
+		values (
+		  #{loginId}, #{name}, #{password}, #{mail}
+		)
+	</insert>
+
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="long">
+	     delete from t_user where id=#{id}
+	</delete>
+</mapper> 
