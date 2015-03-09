@@ -33,11 +33,15 @@ public class MinimumDepthOfBinaryTree {
             return 1;
         }
 
-        if (root.left == null ||  root.right == null) {
-            return 2;
+        if (root.left != null && root.right != null) {
+            return Math.min(minDepth(root.left) + 1, minDepth(root.right) + 1);
         }
 
-        return Math.min(1 +minDepth(root.left),1+minDepth(root.right) );
+        if (root.left != null) {
+            return minDepth(root.left) + 1;
+        }
+
+        return minDepth(root.right) + 1;
     }
 
     private static int childDepth(TreeNode node) {
@@ -48,7 +52,7 @@ public class MinimumDepthOfBinaryTree {
             int right = 1 + childDepth(node.right);
             System.out.println("left is " + left);
             System.out.println("right is " + right);
-            return Math.max(left,right);
+            return Math.max(left, right);
         }
     }
 
@@ -60,7 +64,7 @@ public class MinimumDepthOfBinaryTree {
 
         List<TreeNode> nodes = new ArrayList<TreeNode>();
 
-        for (int i = 2;i < 100;i++) {
+        for (int i = 2; i < 100; i++) {
             nodes.add(new TreeNode(i));
         }
 
@@ -70,30 +74,30 @@ public class MinimumDepthOfBinaryTree {
         TreeNode t1 = root.left;
         TreeNode t2 = root.right;
 
-        for (int i = 2;i < 100;i++) {
+        for (int i = 2; i < 100; i++) {
 
             int q = r.nextInt();
 
-            switch(q %4) {
-                case 0 :
+            switch (q % 4) {
+                case 0:
                     if (t1.left != null) {
                         t1 = t1.left;
                     }
                     t1.left = new TreeNode(i);
                     break;
-                case 1 :
+                case 1:
                     if (t1.right != null) {
                         t1 = t1.right;
                     }
                     t1.right = new TreeNode(i);
                     break;
-                case 2 :
+                case 2:
                     if (t2.left != null) {
                         t2 = t2.left;
                     }
                     t2.left = new TreeNode(i);
                     break;
-                case 3 :
+                case 3:
                     if (t2.right != null) {
                         t2 = t2.right;
                     }
