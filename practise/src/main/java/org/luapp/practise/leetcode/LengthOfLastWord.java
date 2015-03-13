@@ -5,10 +5,31 @@ package org.luapp.practise.leetcode;
  */
 public class LengthOfLastWord {
     public static int lengthOfLastWord(String s) {
-        return 0;
+        if (s == null || "".equals(s)) {
+            return 0;
+        }
+
+        int i = s.length() - 1;
+        int cnt = 0;
+        boolean foundAlpha = false;
+        while (i >= 0) {
+            char c = s.charAt(i);
+            if (c != ' ') {
+                cnt++;
+                foundAlpha = true;
+            } else {
+                if (foundAlpha) {
+                    break;
+                }
+            }
+            i--;
+        }
+
+        return cnt;
     }
 
     public static void main(String[] args) {
         System.out.println(lengthOfLastWord("Hello World"));
+        System.out.println(lengthOfLastWord("a "));
     }
 }
