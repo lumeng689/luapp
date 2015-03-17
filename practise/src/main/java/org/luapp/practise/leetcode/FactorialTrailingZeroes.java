@@ -5,8 +5,21 @@ package org.luapp.practise.leetcode;
  */
 public class FactorialTrailingZeroes {
 
+    /**
+     * 求含质因子5的个数
+     *
+     * @param n
+     * @return
+     */
     public static int trailingZeroes(int n) {
-        return 0;
+        int ans = 0;
+        long x = 5;
+        long c = n;
+        while (c >= x) {
+            ans += n / x;
+            x *= 5;
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
@@ -14,5 +27,6 @@ public class FactorialTrailingZeroes {
         System.out.println(trailingZeroes(100));
         System.out.println(trailingZeroes(1000));
         System.out.println(trailingZeroes(10000));
+        System.out.println(trailingZeroes(2147483647));
     }
 }
