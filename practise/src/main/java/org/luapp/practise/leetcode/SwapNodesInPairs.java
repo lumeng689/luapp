@@ -28,6 +28,8 @@ public class SwapNodesInPairs {
             cur.next = ret.next;
             cur = cur.next;
         }
+
+        return null;
     }
 
     public static void print(ListNode head) {
