@@ -238,7 +238,19 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>org.springframework.session</groupId>
+                <artifactId>spring-session-data-redis</artifactId>
+                <version>1.0.0.RELEASE</version>
+            </dependency>
             <!-- Spring end -->
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.4.1</version>
+            </dependency>
 
             <!-- aop -->
             <dependency>
@@ -595,6 +607,11 @@
                 <version>1.1.41</version>
             </dependency>
             <!-- JSON end -->
+            <dependency>
+                <groupId>com.belerweb</groupId>
+                <artifactId>pinyin4j</artifactId>
+                <version>2.5.0</version>
+            </dependency>
 
             <!-- TEST START -->
             <!-- selenium 2.0 -->
@@ -873,6 +890,37 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>1.4.0</version>
                 </plugin>
+                <!-- 覆盖率 -->
+                <!--
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.4.201502262128</version>
+                </plugin>
+                -->
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>cobertura-maven-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <instrumentation>
+                            <ignores>
+                                <ignore>com.example.boringcode.*</ignore>
+                            </ignores>
+                            <excludes>
+                                <exclude>com/example/dullcode/**/*.class</exclude>
+                                <exclude>com/example/**/*Test.class</exclude>
+                            </excludes>
+                        </instrumentation>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>clean</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -926,4 +974,14 @@
             </build>
         </profile>
     </profiles>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>cobertura-maven-plugin</artifactId>
+                <version>2.7</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
