@@ -42,6 +42,6 @@ public class HomeController {
 
         // 返回的url不要直接拼接参数，因为spring会对url进行缓存，容易导致内存泄露
         ra.addAttribute("articleId", "111");
-        return "redirect:/view?articleId={articleId}"
+        return "redirect:/view?articleId={articleId}";
     }
 }

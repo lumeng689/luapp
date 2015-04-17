@@ -18,6 +18,12 @@
 			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
 		    	<constructor-arg value="UTF-8" />
 			</bean>
+            <bean name="jacksonMessageConverter"
+                  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.luapp.cms.utils.CustomObjectMapper"/>
+                </property>
+            </bean>
   		</mvc:message-converters>
 	</mvc:annotation-driven>
 
