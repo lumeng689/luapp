@@ -1,4 +1,4 @@
-package org.luapp.cms.filters;
+package org.luapp.core.filters;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;

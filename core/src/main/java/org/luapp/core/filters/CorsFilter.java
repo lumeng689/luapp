@@ -1,4 +1,4 @@
-package org.luapp.cms.filters;
+package org.luapp.core.filters;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
