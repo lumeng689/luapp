@@ -13,6 +13,11 @@
     <name>CMS</name>
     <url>http://maven.apache.org</url>
     <dependencies>
+        <dependency>
+            <groupId>org.luapp</groupId>
+            <artifactId>core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <!-- WEB begin -->
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -21,8 +26,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- WEB end -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+        </dependency>
         <!-- spring start -->
         <dependency>
             <groupId>asm</groupId>
@@ -189,6 +199,19 @@
 		<dependency>
             <groupId>org.owasp.antisamy</groupId>
             <artifactId>antisamy</artifactId>
+        </dependency>
+        <!-- Java 监控工具 -->
+        <dependency>
+            <groupId>org.javasimon</groupId>
+            <artifactId>javasimon-spring</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.javasimon</groupId>
+            <artifactId>javasimon-console-embed</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.javasimon</groupId>
+            <artifactId>javasimon-javaee</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

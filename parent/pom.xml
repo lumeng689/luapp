@@ -36,6 +36,7 @@
         <jcaptcha.version>1.0</jcaptcha.version>
         <zxing.version>2.2</zxing.version>
         <shiro.version>1.2.3</shiro.version>
+        <javasimon.version>3.5.2</javasimon.version>
         <!-- Test scope -->
         <mockito.version>1.9.5</mockito.version>
         <powermock.version>1.5.6</powermock.version>
@@ -689,6 +690,28 @@
                 <groupId>org.jsoup</groupId>
                 <artifactId>jsoup</artifactId>
                 <version>1.8.2</version>
+            </dependency>
+
+            <!-- Java 监控工具 -->
+            <dependency>
+                <groupId>org.javasimon</groupId>
+                <artifactId>javasimon-spring</artifactId>
+                <version>${javasimon.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javasimon</groupId>
+                <artifactId>javasimon-console-embed</artifactId>
+                <version>${javasimon.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javasimon</groupId>
+                <artifactId>javasimon-javaee</artifactId>
+                <version>${javasimon.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.javasimon</groupId>
+                <artifactId>javasimon-jdbc4</artifactId>
+                <version>${javasimon.version}</version>
             </dependency>
 
             <!-- TEST START -->

@@ -6,4 +6,5 @@
 	default-lazy-init="true">
 
     <import resource="classpath:/applicationContext-resources.xml" />
+    <import resource="classpath:/applicationContext-profiler.xml" />
 </beans>

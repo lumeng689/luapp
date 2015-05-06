@@ -33,6 +33,45 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <filter>
+        <filter-name>simon-filter</filter-name>
+        <filter-class>org.javasimon.javaee.SimonServletFilter</filter-class>
+        <!-- optional -->
+        <init-param>
+            <param-name>prefix</param-name>
+            <param-value>org.luapp.cms</param-value>
+        </init-param>
+        <!-- optional basic plain-text console -->
+        <!--
+        <init-param>
+            <param-name>console-path</param-name>
+            <param-value>/javasimon</param-value>
+        </init-param>
+        -->
+        <!-- optional, necessary when long requests should be reported -->
+        <init-param>
+            <param-name>report-threshold-ms</param-name>
+            <param-value>1000</param-value>
+        </init-param>
+        <!-- optional, used by reporting mechanism - default implementation uses Manager.message
+                to log stuff, this goes to stdout -->
+        <init-param>
+            <param-name>request-reporter-class</param-name>
+            <param-value>org.javasimon.javaee.reqreporter.StandardRequestReporter</param-value>
+        </init-param>
+        <!-- optional, used to specify parameters for StopwatchSource instance -->
+        <init-param>
+            <param-name>stopwatch-source-props</param-name>
+            <param-value>includeHttpMethodName=ALWAYS</param-value>
+        </init-param>
+        <!-- see Javadoc for org.javasimon.javaee.SimonServletFilter for more about available parameters -->
+    </filter>
+
+    <filter-mapping>
+        <filter-name>simon-filter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
     <servlet>
         <servlet-name>springServlet</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -45,6 +84,19 @@
     <servlet-mapping>
         <servlet-name>springServlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SimonConsoleServlet</servlet-name>
+        <servlet-class>org.javasimon.console.SimonConsoleServlet</servlet-class>
+        <init-param>
+            <param-name>url-prefix</param-name>
+            <param-value>/javasimon</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SimonConsoleServlet</servlet-name>
+        <url-pattern>/javasimon/*</url-pattern>
     </servlet-mapping>
 
     <session-config>
