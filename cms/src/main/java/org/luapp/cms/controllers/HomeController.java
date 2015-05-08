@@ -1,6 +1,7 @@
 package org.luapp.cms.controllers;
 
 import org.javasimon.aop.Monitored;
+import org.luapp.cms.services.HelloService;
 import org.luapp.cms.services.UserService;
 import org.luapp.cms.utils.MessageHelper;
 import org.slf4j.Logger;
@@ -27,12 +28,16 @@ public class HomeController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private HelloService helloService;
+
     @Monitored
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public String index(Model model) {
         log.info(messageHelper.getMessage("hello"));
         log.info("22222222222222");
         userService.test();
+        helloService.sayHello();
 
         model.addAttribute("user", "11111");
         return "index";

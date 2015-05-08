@@ -7,4 +7,5 @@
 
     <import resource="classpath:/applicationContext-resources.xml" />
     <import resource="classpath:/applicationContext-profiler.xml" />
+    <import resource="classpath:/applicationContext-groovy.xml" />
 </beans>

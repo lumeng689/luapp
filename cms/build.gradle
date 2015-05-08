@@ -1,0 +1,21 @@
+// Required plugins
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'war'
+
+war {
+    baseName = 'cms'
+    version =  '1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Provided by Tomcat 7 container at runtime
+    providedCompile "javax.servlet:javax.servlet-api:3.+"
+
+    // Compile time dependencies
+    compile 'org.codehaus.groovy:groovy-all:2.4.3'
+}

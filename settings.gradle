@@ -1,0 +1,2 @@
+rootProject.name = luapp
+include 'parent' 'core' 'cms' 'blog' 'practise'
