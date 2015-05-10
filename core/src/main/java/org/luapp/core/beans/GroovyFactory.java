@@ -1,7 +1,7 @@
 package org.luapp.core.beans;
 
-import com.sun.xml.internal.ws.util.StringUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.beans.factory.support.GenericBeanDefinition;
@@ -66,7 +66,7 @@ public class GroovyFactory implements ApplicationContextAware {
             bd.setAttribute(LANGUAGE, "groovy");
             bd.getConstructorArgumentValues().addIndexedArgumentValue(0, file.getPath().replace(rootPath, ""));
 
-            String beanName = StringUtils.decapitalize(file.getName().replace("groovy", ""));
+            String beanName = StringUtils.uncapitalize(file.getName().replace("groovy", ""));
             beanFactory.registerBeanDefinition(beanName, bd);
         }
     }

@@ -10,13 +10,13 @@ import java.util.Map;
  *
  * @param <T>
  */
-public interface BaseDao<T> {
+public interface BaseDao<K, T> {
 
-    T get(Long id);
+    T get(K id);
 
     List<T> search(Map<String, Object> parameters);
 
     void save(T entity);
 
-    void delete(Long id);
+    void delete(K id);
 }
