@@ -21,7 +21,6 @@ public class HomeController {
 
     private static Logger log = LoggerFactory.getLogger(HomeController.class);
 
-
     @Autowired
     private MessageHelper messageHelper;
 

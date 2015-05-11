@@ -14,6 +14,10 @@ import java.io.FileNotFoundException;
 public class AntisamyUtils {
     private final static Logger logger = LoggerFactory.getLogger(AntisamyUtils.class);
 
+    private AntisamyUtils(){
+        throw new RuntimeException("it can not be initialized");
+    }
+
     public static String cleanHtml(String contents) {
         try {
             Policy policy = Policy.getInstance(ResourceUtils.getFile("classpath:/conf/antisamy-myspace-1.4.4.xml"));

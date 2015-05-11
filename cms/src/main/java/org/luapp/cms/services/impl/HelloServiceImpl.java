@@ -15,11 +15,11 @@ public class HelloServiceImpl implements HelloService {
 
     private Logger logger = LoggerFactory.getLogger(HelloServiceImpl.class);
 
-    @Autowired
-    private Messager messager;
+//    @Autowired
+//    private Messager messager;
 
     @Override
     public void sayHello() {
-        logger.info("=========={}", messager.getMessage());
+//        logger.info("=========={}", messager.getMessage());
     }
 }

@@ -33,6 +33,21 @@
 		<property name="suffix" value=".jsp"/>
 	</bean>
 
+    <!-- 国际化消息 -->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <!-- 其中basename用来指定properties文件的通用名 -->
+        <property name="basename" value="i18n/messages" />
+        <property name="useCodeAsDefaultMessage" value="true" />
+    </bean>
+
+    <bean id="messageHelper" class="org.luapp.cms.utils.MessageHelper">
+        <property name="messageSource">
+            <ref bean="messageSource" />
+        </property>
+    </bean>
+
+
     <mvc:resources mapping="/static/**" location="/static/" />
     <!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL-->
 	<mvc:default-servlet-handler/>
