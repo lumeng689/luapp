@@ -29,6 +29,7 @@ public class AppConfig {
     public DataSource dataSource() {
         final DruidDataSource ds = new DruidDataSource();
 
+        // 此处也可以通过@Value 获取参数值
         ds.setDriverClassName(env.getProperty("jdbc.driverClassName"));
         ds.setUrl(env.getProperty("jdbc.url"));
         ds.setUsername(env.getProperty("jdbc.username"));

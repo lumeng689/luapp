@@ -123,6 +123,11 @@ public class Servlets {
 	 */
 	public static void setFileDownloadHeader(HttpServletResponse response, String fileName) {
 		// 中文文件名支持
+//        if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
+//            filename = URLEncoder.encode(filename, "UTF-8");
+//        } else {
+//            filename = new String(filename.getBytes("UTF-8"), "ISO8859-1");
+//        }
 		String encodedfileName = new String(fileName.getBytes(), Charsets.ISO_8859_1);
 		response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + encodedfileName + "\"");
 

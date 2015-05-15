@@ -1,5 +1,8 @@
 package org.luapp.cms.controllers;
 
+import org.junit.Rule;
+import org.powermock.modules.agent.PowerMockAgent;
+import org.powermock.modules.junit4.rule.PowerMockRule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -14,4 +17,5 @@ public class AbstractContextControllerTests {
 
     @Autowired
     protected WebApplicationContext wac;
+
 }
