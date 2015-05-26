@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>backbone test</title>
+	<script type="text/javascript" src="../script/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="../script/lib/underscore-1.5.0.js"></script>
+	<script type="text/javascript" src="../script/lib/backbone-1.2.0.js"></script>
+
+	<script type="text/javascript">
+	    // var model1 = new Backbone.Model({name: 'hello'});
+	    // var model2 = new  Backbone.Model({age: 15});
+
+	    // var models = new Backbone.Collection();
+	    // models.add(model1);
+	    // models.add(model2);
+
+	    // //alert(JSON.stringify(models));
+
+	    // var M = Backbone.Model.extend({
+	    // 	defaults: {
+	    // 		name: 'hello'
+	    // 	},
+	    // 	initialize: function() {
+	    // 		this.on('change', function(){
+	    // 			alert(123);
+	    // 		});
+	    // 		this.on('change:name', function(){
+	    // 			alert(456);
+	    // 		});
+	    // 	},
+	    // 	sayHello: function() {
+	    // 		alert('hello');
+	    // 	}
+	    // });
+	    // var m = new M();
+	    // // 触发change事件
+	    // m.set('name', 'hi');
+	    // //m.sayHello();
+	    // 
+	    $(function(){
+	    	var M = Backbone.Model.extend({
+	    		defaults: {
+	    			name: 'hello'
+	    		}
+	    	});
+
+	    	var V = Backbone.View.extend({
+	    		initialize: function(){
+	    			this.listenTo(this.model, 'change', this.show);
+	    		},
+	    		show: function(model) {
+	    			$('body').append('<div>' + model.get('name') + '</div>');
+	    		}
+	    	});
+
+	    	var m = new M();
+	    	var v = new V({model: m});
+	    	m.set('name', 'hi');
+	    });
+	</script>
+</head>
+<body>
+
+</body>
+</html>
