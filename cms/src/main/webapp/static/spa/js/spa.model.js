@@ -1,8 +1,15 @@
-/**
+/*
  * spa.model.js
- */
+ * Model module
+*/
 
-spa.model = (function(){
+/*jslint         browser : true, continue : true,
+  devel  : true, indent  : 2,    maxerr   : 50,
+  newcap : true, nomen   : true, plusplus : true,
+  regexp : true, sloppy  : true, vars     : false,
+  white  : true
+*/
 
-	return {};
-})();
+/*global $, spa */
+
+spa.model = (function (){ return {}; }());
