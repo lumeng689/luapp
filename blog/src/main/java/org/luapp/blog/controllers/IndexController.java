@@ -11,9 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class IndexController {
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    @ResponseBody
+    @RequestMapping(value = "/")
     public String index() {
-        return "Hello world";
+        return "index";
     }
 }

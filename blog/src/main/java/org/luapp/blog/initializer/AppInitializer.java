@@ -2,7 +2,12 @@ package org.luapp.blog.initializer;
 
 import org.luapp.blog.config.AppConfig;
 import org.luapp.blog.config.WebConfig;
+import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 /**
  * Created by lumeng on 2015/4/4.
@@ -10,10 +15,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     private final static String CONFIG_LOCATION = "org.luapp.blog.config";
-    private final static String MAPPING_URL = "/*";
+    private final static String MAPPING_URL = "/";
     private final static String DISPATCH_SERVLET_NAME = "DispatcherServlet";
 
-//    public void onStartup(ServletContext servletContext) throws ServletException {
+    //    public void onStartup(ServletContext servletContext) throws ServletException {
 //        WebApplicationContext context = getContext();
 //        servletContext.addListener(new ContextLoaderListener(context));
 //        ServletRegistration.Dynamic dispatcher = servletContext.addServlet(DISPATCH_SERVLET_NAME, new DispatcherServlet(context));
