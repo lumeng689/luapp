@@ -1,0 +1,8 @@
+package org.luapp.practise.proto;
+
+option java_package = 'org.luapp.practise.proto';
+option java_outer_classname = 'RequestProto';
+
+message Request {
+    required int32 cmdType = 1;
+}

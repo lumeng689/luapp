@@ -1,0 +1,9 @@
+package org.luapp.practise.proto;
+
+option java_package = 'org.luapp.practise.proto';
+option java_outer_classname = 'ResponseProto';
+
+message Response {
+    required int32 ret = 1;
+    required string msg = 2;
+}
