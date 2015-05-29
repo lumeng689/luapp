@@ -1,0 +1,17 @@
+{
+  "name": "blog",
+  "version": "0.0.1",
+  "author": "lum",
+  "description": "blog",
+  "keywords": "lum blog",
+  "dependencies": {
+    "underscore": "^1.7.0",
+    "backbone": "^1.2.0",
+    "backbone.localstorage": "^1.1.16",
+    "jquery": "^1.11.2",
+    "async": "*",
+    "requirejs": "^2.1.16",
+    "requirejs-text": "^2.0.12",
+    "json2": "^0.1.0"
+  }
+}

@@ -2,19 +2,14 @@
 <%@ include file="/jsp/include.jsp" %>
 
 <!DOCTYPE html>
-<html>
+<html data-framework="backbonejs">
 <head>
     <title>blog</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <link rel="stylesheet" type="text/css" href="${ctx}/static/third/semantic-ui/semantic.css">
-    <script type="text/javascript" src="${ctx}/static/js/jquery-1.11.2.js"></script>
-    <script type="text/javascript" src="${ctx}/static/js/lib/underscore-1.5.0.js"></script>
-    <script type="text/javascript" src="${ctx}/static/js/lib/backbone-1.2.0.js"></script>
-    <script type="text/javascript" src="${ctx}/static/third/semantic-ui/semantic.js"></script>
 </head>
 <body id="home">
 
@@ -69,7 +64,9 @@
 </div>
 </div>
 </div>
-
-<script type="text/javascript" src="${ctx}/static/js/blog.js"></script>
+<!--
+<script type="text/javascript" src="${ctx}/static/third/semantic-ui/semantic.js"></script>
+-->
+<script data-main="${ctx}/static/js/main" src="${ctx}/static/js/node_modules/requirejs/require.js"></script>
 </body>
 </html>
