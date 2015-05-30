@@ -1,18 +1,18 @@
 define([
     'jquery',
     'underscore',
-    'backbone'
-],function($, _, Backbone){
+    'backbone',
+    'text!templates/index.html'
+],function($, _, Backbone, tpl){
     'use strict';
-
-    el: '#todoapp'
 
     var IndexView = Backbone.View.extend({
         initialize: function() {
-            // TODO
+            this.compiled = _.template(tpl);
         },
         render: function() {
-
+            this.$el.html(this.compiled());
+            return this;
         }
     });
 

@@ -21,13 +21,24 @@ define([
             this.indexView = new IndexView();
         },
 
+        blogView: {
+            show: function(view, callback) {
+                if (this.currentView) {
+                    this.currentView.close();
+                }
+
+                this.currentView = view;
+                this.currentView.render(callback);
+                $("#main").hide().html(this.currentView.el).fadeIn();
+            }
+        },
+
         index: function() {
             // TODO
             if (!this.indexView) {
                 this.indexView = new IndexView();
             }
-
-
+            this.blogView.show(this.indexView);
         },
 
         login: function() {
