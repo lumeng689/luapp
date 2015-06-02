@@ -17,7 +17,7 @@
     <div class="ui page grid">
         <div class="column">
             <div class="ui inverted blue menu">
-                <div class="header item"><a href="#!/index">博客</a></div>
+                <div class="header item"><a href="#/index">博客</a></div>
                 <div class="right menu">
                     <div class="ui mobile dropdown link item">
                         技术
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <a class="item">生活</a>
-                    <a class="item" href="#!/login">登录</a>
+                    <a class="item" href="#/login">登录</a>
                 </div>
             </div>
         </div>
