@@ -2,8 +2,11 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    '../views/index'
-],function($, _, Backbone, IndexView){
+    '../collections/menu',
+    '../views/blog',
+    '../views/index',
+    '../views/login'
+], function ($, _, Backbone, Menu, BlogView, IndexView, LoginView) {
     'use strict';
 
     var BlogRouter = Backbone.Router.extend({
@@ -17,48 +20,38 @@ define([
             'article/:id/edit': 'editArticle'
         },
 
-        initialize: function() {
-            this.indexView = new IndexView();
+        initialize: function () {
+            var menu = new Menu();
+            this.blogView = new BlogView({collection: menu});
         },
 
-        blogView: {
-            show: function(view, callback) {
-                if (this.currentView) {
-                    this.currentView.close();
-                }
-
-                this.currentView = view;
-                this.currentView.render(callback);
-                $("#main").hide().html(this.currentView.el).fadeIn();
-            }
-        },
-
-        index: function() {
-            // TODO
+        index: function () {
             if (!this.indexView) {
                 this.indexView = new IndexView();
             }
             this.blogView.show(this.indexView);
         },
 
-        login: function() {
-            // TODO
-            this.blogView.show();
+        login: function () {
+            if (!this.loginView) {
+                this.loginView = new LoginView();
+            }
+            this.blogView.showDialog(this.loginView);
         },
 
-        article: function() {
-            // TODO
-        },
-
-        addArticle: function() {
+        article: function () {
             // TODO
         },
 
-        viewArticle: function(id) {
+        addArticle: function () {
             // TODO
         },
 
-        editArticle: function() {
+        viewArticle: function (id) {
+            // TODO
+        },
+
+        editArticle: function () {
             // TODO
         }
     });

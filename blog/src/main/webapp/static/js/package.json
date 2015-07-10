@@ -12,6 +12,7 @@
     "async": "*",
     "requirejs": "^2.1.16",
     "requirejs-text": "^2.0.12",
-    "json2": "^0.1.0"
+    "json2": "^0.1.0",
+    "juicer": "0.6.10-stable"
   }
 }

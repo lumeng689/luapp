@@ -31,10 +31,17 @@ require.config({
         backboneLocalstorage: './node_modules/backbone.localstorage/backbone.localStorage',
         semantic: '../vendor/semantic-ui/semantic',
         async: './node_modules/async/lib/async',
-        text: './node_modules/requirejs-text/text'
+        text: './node_modules/requirejs-text/text',
+        juicer: './node_modules/juicer/src/juicer'
     }
 });
 
-require(['blog'],function(blog){
-        blog.initialize();
+require(['jquery',
+    'underscore',
+    'backbone',
+    './routers/router'], function ($, _, Backbone, BlogRouter) {
+
+    // start...
+    var router = new BlogRouter();
+    Backbone.history.start();
 });

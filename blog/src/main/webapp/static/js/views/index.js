@@ -3,7 +3,7 @@ define([
     'underscore',
     'backbone',
     'text!templates/index.html'
-],function($, _, Backbone, tpl){
+], function($, _, Backbone, tpl){
     'use strict';
 
     var IndexView = Backbone.View.extend({
