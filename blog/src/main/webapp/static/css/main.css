@@ -31,6 +31,15 @@ body {
     border-top: 1px solid #e5e5e5;
 }
 
+input.error {
+    border: 1px solid red;
+}
+
+label.error {
+    font-weight: bold;
+    color: #EA5200;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
     .container {
@@ -52,7 +61,8 @@ body {
 }
 
 /* Supporting marketing content */
-.marketing {
+.marketing
+{
     margin: 40px 0;
 }
 .marketing p + h4 {

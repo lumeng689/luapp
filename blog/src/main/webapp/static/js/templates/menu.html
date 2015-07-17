@@ -1,3 +1,5 @@
 {@each menu as item, index}
-<li class="menuItem  {@if index==selIndex}active{@/if}" role="presentation"><a href="#${item.url}">${item.label}</a></li>
+<li class="menuItem  {@if index==selIndex}active{@/if}" role="presentation">
+    <a href="#${item.url}">${item.label}</a>
+</li>
 {@/each}

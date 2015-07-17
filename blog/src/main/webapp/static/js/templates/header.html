@@ -1,0 +1,13 @@
+<div id="header-view">
+    <nav>
+        <ul id="menu" class="nav nav-pills pull-right">
+
+            {@each items as item, index}
+            <li class="menuItem {@if (selItem == '' && index == 0) || (selItem !== '' && item.url && item.url.indexOf(selItem) === 0)}active{@/if}" role="presentation">
+                <a href="#${item.url}">${item.label}</a>
+            </li>
+            {@/each}
+        </ul>
+    </nav>
+    <h3 class="text-muted">Project name</h3>
+</div>

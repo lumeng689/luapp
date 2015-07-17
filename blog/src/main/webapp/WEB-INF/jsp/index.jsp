@@ -13,55 +13,32 @@
     <link rel="icon" href="../../favicon.ico">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/css/main.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/bootstrap-3.3.5-dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/art-dialog-6.0.4/css/ui-dialog.css">
+    <script>
+        window.Global = {
+            context_path: '${contextPath}',
+            lang: '${lang}'
+        };
+    </script>
 </head>
 <body>
 
 <div id="page" class="container">
-    <div class="header clearfix">
-        <nav>
-            <ul id="menu" class="nav nav-pills pull-right">  <!---
-                <li role="presentation" class="active"><a href="#/index">首页</a></li>
-                <li role="presentation"><a href="#/index">About</a></li>
-                <li role="presentation"><a href="#/index">Contact</a></li>
-                <li role="presentation"><a href="#/login">登录</a></li>
-                -->
-            </ul>
-        </nav>
-        <h3 class="text-muted">Project name</h3>
+    <div id="header" class="header clearfix">
     </div>
 
-    <div id="main" class="row"></div>
+    <div id="main" class="row">
 
-    <div class="row">
-        <div class="col-lg-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-
-        <div class="col-lg-6">
-            <h4>Subheading</h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
-
-            <h4>Subheading</h4>
-            <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
-
-            <h4>Subheading</h4>
-            <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
     </div>
 
-    <footer class="footer">
-        <p>&copy; Company 2014</p>
+    <footer id="footer" class="footer">
+
     </footer>
 
 </div> <!-- /container -->
-
-<script data-main="${ctx}/static/js/main" src="${ctx}/static/js/node_modules/requirejs/require.js"></script>
+<script language="javascript" type="text/javascript" src="${ctx}/static/js/node_modules/requirejs/require.js" data-main="${ctx}/static/js/main" ></script>
+<script language="javascript" type="text/javascript" src="${ctx}/static/js/lib/ext.js"></script>
+<script language="javascript" type="text/javascript" src="${ctx}/static/vendor/echarts-2.2.5/source/echarts.js" ></script>
+<script language="javascript" type="text/javascript" src="${ctx}/static/vendor/My97DatePicker/WdatePicker.js"></script>
 </body>
 </html>

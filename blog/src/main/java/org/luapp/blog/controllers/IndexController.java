@@ -2,9 +2,12 @@ package org.luapp.blog.controllers;
 
 import org.luapp.blog.domain.MenuItem;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +18,9 @@ import java.util.List;
 public class IndexController {
 
     @RequestMapping(value = "/")
-    public String index() {
+    public String index(HttpServletRequest request, Model model) {
+        model.addAttribute("contextPath", request.getContextPath());
+        model.addAttribute("lang","zh");
         return "index";
     }
 
@@ -29,6 +34,8 @@ public class IndexController {
         menu.add(new MenuItem("设备", "/device"));
         menu.add(new MenuItem("策略", "/policy"));
         menu.add(new MenuItem("合规", "/rule"));
+        menu.add(new MenuItem("应用", "/app"));
+        menu.add(new MenuItem("统计", "/dashboard"));
 
         return menu;
     }

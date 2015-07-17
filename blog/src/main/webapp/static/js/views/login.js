@@ -2,13 +2,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/login.html'
-], function($, _, Backbone, tpl){
+    'templates'
+], function($, _, Backbone, Templates){
     'use strict';
 
     var loginView = Backbone.View.extend({
         initialize: function() {
-            this.compiled = _.template(tpl);
+            this.compiled = _.template(Templates.menuItemView);
         },
         render: function() {
             this.$el.html(this.compiled());

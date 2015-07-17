@@ -2,19 +2,33 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'text!templates/index.html'
-], function($, _, Backbone, tpl){
+    'marionette',
+    'juicer',
+    'templates'
+], function ($, _, Backbone, Marionette, juicer, Templates) {
     'use strict';
 
-    var IndexView = Backbone.View.extend({
-        initialize: function() {
-            this.compiled = _.template(tpl);
-        },
-        render: function() {
-            this.$el.html(this.compiled());
-            return this;
+    var index = Marionette.ItemView.extend({
+        //el: "#main",
+        template: Templates.index,
+        initialize: function () {
+            console.log('...footer init....');
         }
     });
 
-    return IndexView;
+    return index;
+
+    //var IndexView = Backbone.View.extend({
+    //    initialize: function () {
+    //        this.compiled = _.template(tpl);
+    //    },
+    //    render: function () {
+    //        this.$el.html(this.compiled());
+    //        return this;
+    //    },
+    //    modelDestroyed: function () {
+    //    }
+    //});
+    //
+    //return IndexView;
 });
