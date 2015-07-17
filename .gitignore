@@ -29,3 +29,5 @@ hs_err_pid*
 .idea
 *.iml
 **/rebel.xml
+
+.DS_Store

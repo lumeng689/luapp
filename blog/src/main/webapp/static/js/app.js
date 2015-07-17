@@ -39,20 +39,26 @@ define([
 
     //$.validator.setDefaults({
     //    //debug: true,
-    //    errorClass: 'error'
+    //    errorClass: 'error',
+    //    highlight: function (element) {
+    //        $(element).closest('.form-group').addClass('has-error');
+    //    },
+    //    unhighlight: function (element) {
+    //        $(element).closest('.form-group').removeClass('has-error');
+    //    }
     //});
 
-    require(['jquery_validate'], function() {
+    require(['jquery_validate'], function () {
         // 自定义校验方法
-        $.validator.addMethod("zipcode", function(value, element) {
+        $.validator.addMethod("zipcode", function (value, element) {
             return this.optional(element) || /^\d{5}$/.test(value);
         }, "The specified US ZIP Code is invalid");
 
         // 加载国际化语言
-        require(['jquery_validate/localization/messages_' + Global.lang], function(){
+        require(['jquery_validate/localization/messages_' + Global.lang], function () {
             console.log('------------load message success------------');
         });
-    } );
+    });
 
     var app = new App();
 
