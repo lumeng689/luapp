@@ -75,6 +75,7 @@ require.config({
         'underscore.string': './node_modules/underscore.string/dist/underscore.string',
         backbone: './node_modules/backbone/backbone',
         backboneLocalstorage: './node_modules/backbone.localstorage/backbone.localStorage',
+        'backbone.radio': './node_modules/backbone.radio/build/backbone.radio',
         ext: './lib/ext',
         bootstrap: '../vendor/bootstrap-3.3.5-dist/js/bootstrap.js',
         async: './node_modules/async/lib/async',
@@ -87,12 +88,52 @@ require.config({
         zrender: '../vendor/zrender/src',
         jqueryFileUpload: '../vendor/jquery-file-upload-9.10.4/jquery.fileupload',
         'jquery.ui.widget': '../vendor/jquery-file-upload-9.10.4/vendor/jquery.ui.widget',
-        jqueryIframetransport: '../vendor/jquery-file-upload-9.10.4/jquery.iframe-transport'
-        // 'jquery_validate': '../vendor/jquery-validation-1.14.0/dist/jquery.validate'
+        jqueryIframetransport: '../vendor/jquery-file-upload-9.10.4/jquery.iframe-transport',
+        // 'jquery_validate': '../vendor/jquery-validation-1.14.0/dist/jquery.validate',
+        nprogress: './node_modules/nprogress/nprogress'
     }
 });
 
-require(['app'], function (app) {
-    // start...
-    app.start();
-});
+require(['./application/application',
+        'juicer',
+        './routers/index',
+        './routers/user',
+        './routers/app',
+        './routers/dashboard',],
+    function (App, juicer, IndexRouter, UserRouter, AppRouter, DashboardRouter) {
+        // start...
+        //app.start();
+
+        juicer.register('getUrl', function (path) {
+            return require.toUrl(path);
+        });
+
+        Marionette.Renderer.render = function (template, data) {
+            return juicer(template, data);
+        };
+
+        require(['jquery_validate'], function () {
+            // 自定义校验方法
+            $.validator.addMethod("zipcode", function (value, element) {
+                return this.optional(element) || /^\d{5}$/.test(value);
+            }, "The specified US ZIP Code is invalid");
+
+            // 加载国际化语言
+            require(['jquery_validate/localization/messages_' + Global.lang], function () {
+                console.log('------------load message success------------');
+            });
+        });
+
+        $(document).ajaxError(function () {
+            alert('ajax error!!!!!!');
+        });
+
+        var app = new App();
+
+        var indexRouter = new IndexRouter();
+        var userRouter = new UserRouter();
+        var appRouter = new AppRouter();
+        var dashboardRouter = new DashboardRouter();
+
+        Backbone.history.start();
+    });

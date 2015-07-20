@@ -12,6 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="${ctx}/static/js/node_modules/nprogress/nprogress.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/bootstrap-3.3.5-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/art-dialog-6.0.4/css/ui-dialog.css">
     <script>

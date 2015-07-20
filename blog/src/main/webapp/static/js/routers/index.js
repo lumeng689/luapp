@@ -21,7 +21,7 @@ define([
         },
         index: function () {
             console.log('---------enter index list----------');
-            app.main.show(new IndexView());
+            //app.main.show(new IndexView());
         },
     });
 

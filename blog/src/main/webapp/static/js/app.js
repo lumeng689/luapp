@@ -60,6 +60,10 @@ define([
         });
     });
 
+    $(document).ajaxError(function(){
+        alert('ajax error!!!!!!');
+    });
+
     var app = new App();
 
     // 划分页面区域

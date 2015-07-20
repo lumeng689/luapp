@@ -5,6 +5,7 @@ define(function (require) {
     'use strict';
 
     return {
+        layout: require('text!templates/layout.html'),
         menuItemView: require('text!templates/menu.html'),
         header: require('text!templates/header.html'),
         index: require('text!templates/index.html'),
