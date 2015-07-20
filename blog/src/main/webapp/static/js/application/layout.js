@@ -16,9 +16,10 @@ define([
         template: Templates.layout,
 
         regions: {
-            header: '.application__header',
+            header: '#header',
+            content: '#main',
+            footer: '#footer',
             flashes: '.application__flashes',
-            content: '.application__content',
             overlay: '.application__overlay'
         }
     });

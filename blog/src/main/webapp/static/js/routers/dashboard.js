@@ -14,12 +14,13 @@ define([
         routes: {
             'dashboard': 'dashboard'
         },
-        initialized: function () {
+        initialize: function (options) {
+            this.container = options.container;
             console.log('---------init dashboard router----------');
         },
         dashboard: function () {
             console.log('---------enter dashboard index----------');
-            app.main.show(new DashboardView());
+            this.container.show(new DashboardView());
         }
     });
 

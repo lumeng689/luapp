@@ -53,15 +53,32 @@ require.config({
                 'jquery'
             ],
             exports: 'jQuery.fn.validator'
+        },
+        ztree: {
+            deps: [
+                'jquery'
+            ],
+            exports: 'jQuery.fn.zTree'
+        },
+        backgrid: {
+            deps: [
+                'jquery',
+                'underscore',
+                'backbone'
+            ],
+            exports: 'Backgrid'
+        },
+        'backgrid-paginator': {
+            deps: [
+                'backgrid'
+            ]
+        },
+        'backgrid-text-cell': {
+            deps: [
+                'backgrid'
+            ]
         }
     },
-    //packages: [
-    //    {
-    //        name: 'zrender',
-    //        location: '../vendor/zrender/src', // zrender与echarts在同一级目录
-    //        main: 'zrender'
-    //    }
-    //],
     packages: [
         {
             name: 'jquery_validate',
@@ -76,8 +93,10 @@ require.config({
         backbone: './node_modules/backbone/backbone',
         backboneLocalstorage: './node_modules/backbone.localstorage/backbone.localStorage',
         'backbone.radio': './node_modules/backbone.radio/build/backbone.radio',
+        'backbone.paginator': './node_modules/backbone.paginator/lib/backbone.paginator',
+        //'backbone.service': './node_modules/backbone.service/dist/backbone.service',
         ext: './lib/ext',
-        bootstrap: '../vendor/bootstrap-3.3.5-dist/js/bootstrap.js',
+        bootstrap: '../vendor/bootstrap-3.3.5-dist/js/bootstrap',
         async: './node_modules/async/lib/async',
         text: './node_modules/requirejs-text/text',
         i18n: '../vendor/i18n/i18n',
@@ -90,7 +109,11 @@ require.config({
         'jquery.ui.widget': '../vendor/jquery-file-upload-9.10.4/vendor/jquery.ui.widget',
         jqueryIframetransport: '../vendor/jquery-file-upload-9.10.4/jquery.iframe-transport',
         // 'jquery_validate': '../vendor/jquery-validation-1.14.0/dist/jquery.validate',
-        nprogress: './node_modules/nprogress/nprogress'
+        nprogress: './node_modules/nprogress/nprogress',
+        ztree: '../vendor/zTree_v3/js/jquery.ztree.all-3.5',
+        backgrid: '../vendor/backgrid-0.3.5/backgrid',
+        'backgrid-paginator': '../vendor/backgrid-0.3.5/paginator/backgrid-paginator',
+        'backgrid-text-cell': '../vendor/backgrid-0.3.5/text-cell/backgrid-text-cell'
     }
 });
 
@@ -99,10 +122,13 @@ require(['./application/application',
         './routers/index',
         './routers/user',
         './routers/app',
-        './routers/dashboard',],
-    function (App, juicer, IndexRouter, UserRouter, AppRouter, DashboardRouter) {
-        // start...
-        //app.start();
+        './routers/dashboard',
+        './views/header',
+        './views/footer',
+        './collections/menu',
+    ],
+    function (Application, juicer, IndexRouter, UserRouter, AppRouter, DashboardRouter, HeaderView, FooterView,
+              Menu) {
 
         juicer.register('getUrl', function (path) {
             return require.toUrl(path);
@@ -128,12 +154,25 @@ require(['./application/application',
             alert('ajax error!!!!!!');
         });
 
-        var app = new App();
+        var application = new Application();
 
-        var indexRouter = new IndexRouter();
-        var userRouter = new UserRouter();
-        var appRouter = new AppRouter();
-        var dashboardRouter = new DashboardRouter();
+        var menu = new Menu();
+        application.layout.header.show(new HeaderView({collection: menu}));
+        //
+        application.layout.footer.show(new FooterView());
+
+        application.index = new IndexRouter({
+            container: application.layout.content
+        });
+        application.user = new UserRouter({
+            container: application.layout.content
+        });
+        application.app = new AppRouter({
+            container: application.layout.content
+        });
+        application.dashboard = new DashboardRouter({
+            container: application.layout.content
+        });
 
         Backbone.history.start();
     });

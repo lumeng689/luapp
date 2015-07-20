@@ -11,8 +11,9 @@ define([
     var index = Marionette.ItemView.extend({
         //el: "#main",
         template: Templates.index,
+        className: 'index',
         initialize: function () {
-            console.log('...footer init....');
+            console.log('...index init....');
         }
     });
 

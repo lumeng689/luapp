@@ -16,14 +16,15 @@ define([
             'app/:id': 'viewApp',
             'app/:id/edit': 'editApp'
         },
-        initialized: function () {
+        initialize: function (options) {
+            this.container = options.container;
             debugger;
             console.log('---------init app router----------');
         },
         appIndex: function () {
             console.log('---------enter app list----------');
             debugger;
-            app.main.show(new AppIndexView());
+            this.container.show(new AppIndexView());
         },
         viewApp: function () {
             console.log('---------enter view app----------');

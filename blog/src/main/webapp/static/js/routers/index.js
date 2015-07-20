@@ -15,13 +15,19 @@ define([
             '': 'index',
             'index': 'index',
         },
-        initialized: function () {
+        initialize: function (options) {
             debugger;
+            this.container = options.container;
             console.log('---------init index router----------');
+            this.on("route", this.onBeforeEnter, this);
+        },
+        onBeforeEnter: function(){
+            console.log('---------on before enter----------');
         },
         index: function () {
+            this.view = new IndexView();
             console.log('---------enter index list----------');
-            //app.main.show(new IndexView());
+            this.container.show(this.view);
         },
     });
 

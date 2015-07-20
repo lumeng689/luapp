@@ -16,13 +16,14 @@ define([
             'user/:id': 'viewUser',
             'user/:id/edit': 'editUser'
         },
-        initialized: function () {
+        initialize: function (options) {
+            this.container = options.container;
             debugger;
             console.log('---------init user router----------');
         },
         user: function () {
             console.log('---------enter user list----------');
-            app.main.show(new UserListView());
+            this.container.show(new UserListView());
         },
         viewUser: function () {
             console.log('---------enter view user----------');

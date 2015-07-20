@@ -20,7 +20,11 @@ define([
         events: {
             "click @ui.menuItem": "clickMenu",
         },
+        //collectionEvents: {
+        //    all: 'render'
+        //},
         initialize: function () {
+            debugger;
             //var me = this;
             //this.collection.on('sync', function () {
             //    debugger;
@@ -48,8 +52,6 @@ define([
             if (url && url.length > 0) {
                 url = url.substr(1);
             }
-            debugger;
-
             return {items: menu, selItem: url};
         },
         onRender: function () {
@@ -59,7 +61,7 @@ define([
             this.ui.menuItem.removeClass('active');
             $(event.target).parent('li').addClass('active');
         },
-        selectMenu: function(data) {
+        selectMenu: function (data) {
             console.log('..select menu....' + data);
         }
     });
