@@ -11,7 +11,8 @@ define(function (require) {
         index: require('text!templates/index.html'),
         footer: require('text!templates/footer.html'),
         user: {
-            list: require('text!templates/user/user_list.html')
+            list: require('text!templates/user/user_list.html'),
+            item: require('text!templates/user/user.html')
         },
         app: {
             index: require('text!templates/app/app_index.html')

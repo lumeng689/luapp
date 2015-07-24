@@ -4,7 +4,30 @@
     </div>
 
     <div>
+        Test: <input id="citySel" type="text" readonly value="" style="width:120px;"/>
+        &nbsp;<a id="menuBtn" class="btn btn-success">select</a></li>
+    </div>
+
+    <div>
+        <a id="addUser" href="#/user/add" class="btn btn-primary">添加</a>
+        <a id="viewUser" href="#/user/1" class="btn btn-info">查看</a>
+        <a id="editUser" href="#/user/1/edit" class="btn btn-warning">编辑</a>
+
+        <a id="selGroupAndUser" class="btn btn-warning">打开选择组对话框</a>
+    </div>
+
+    <div>
         <div id="grid"></div>
         <div id="paginator"></div>
+    </div>
+
+    <div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+        <ul id="treeSelDemo" class="ztree"
+            style="margin-top:0; width:180px; height: 300px; background-color:#f0f6e4"></ul>
+    </div>
+
+    <div id="group-user-div" style="display:none;" class="row">
+        <div id="groupTree" class="col-md-3"></div>
+        <div id="userList" class="col-md-9"></div>
     </div>
 </div>

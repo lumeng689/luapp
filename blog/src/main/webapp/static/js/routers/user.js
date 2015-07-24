@@ -6,30 +6,41 @@ define([
     'underscore',
     'backbone',
     'marionette',
-    '../views/user/user_list'
-], function ($, _, Backbone, Marionette, UserListView) {
+    '../models/user',
+    '../views/user/user_list',
+    '../views/user/user'
+], function ($, _, Backbone, Marionette, User, UserListView, UserView) {
     'use strict';
 
     var userRouter = Marionette.AppRouter.extend({
         routes: {
-            'user': 'user',
+            'user': 'userList',
+            'user/add': 'addUser',
             'user/:id': 'viewUser',
             'user/:id/edit': 'editUser'
         },
         initialize: function (options) {
             this.container = options.container;
-            debugger;
             console.log('---------init user router----------');
+            this.on('route', function(){console.log('route')});
         },
-        user: function () {
+        userList: function () {
             console.log('---------enter user list----------');
             this.container.show(new UserListView());
         },
-        viewUser: function () {
-            console.log('---------enter view user----------');
+        addUser: function() {
+            console.log('---------enter add user----------');
+            this.container.show(new UserView({type:'add'}));
         },
-        editUser: function () {
+        viewUser: function (id) {
+            console.log('---------enter view user----------');
+            var user = new User({id: id})
+            this.container.show(new UserView({type: 'view',model: user}));
+        },
+        editUser: function (id) {
             console.log('---------enter edit user----------');
+            this.container.show(new UserView({type: 'edit',id: id}));
+            //this.container.show();
         }
     });
 

@@ -21,6 +21,14 @@ define([
             footer: '#footer',
             flashes: '.application__flashes',
             overlay: '.application__overlay'
+        },
+        childEvents: {
+            'select:menu': function (childView, menuItem) {
+                console.log('child select menu');
+            },
+            render: function (childView) {
+                console.log('child view render.......');
+            }
         }
     });
 

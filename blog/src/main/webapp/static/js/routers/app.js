@@ -18,12 +18,10 @@ define([
         },
         initialize: function (options) {
             this.container = options.container;
-            debugger;
             console.log('---------init app router----------');
         },
         appIndex: function () {
             console.log('---------enter app list----------');
-            debugger;
             this.container.show(new AppIndexView());
         },
         viewApp: function () {

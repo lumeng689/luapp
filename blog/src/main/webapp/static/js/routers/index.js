@@ -16,7 +16,6 @@ define([
             'index': 'index',
         },
         initialize: function (options) {
-            debugger;
             this.container = options.container;
             console.log('---------init index router----------');
             this.on("route", this.onBeforeEnter, this);

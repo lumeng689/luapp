@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=utf-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="/jsp/include.jsp" %>
 
 <!DOCTYPE html>
@@ -19,12 +19,42 @@
     <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/backgrid-0.3.5/backgrid.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/backgrid-0.3.5/paginator/backgrid-paginator.css">
     <link rel="stylesheet" type="text/css" href="${ctx}/static/vendor/backgrid-0.3.5/text-cell/backgrid-text-cell.css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="${ctx}/static/js/lib/html5shiv.min.js"></script>
+    <script src="${ctx}/static/js/lib/respond.min.js"></script>
+    <![endif]-->
     <script>
         window.Global = {
             context_path: '${contextPath}',
             lang: '${lang}'
         };
     </script>
+    <style type="text/css">
+        .mask {
+            position: absolute;
+            top: 0px;
+            filter: alpha(opacity=60);
+            background-color: #777;
+            z-index: 1002;
+            left: 0px;
+            opacity: 0.5;
+            -moz-opacity: 0.5;
+        }
+
+        .progress2 {
+            background-image: url('${ctx}/static/images/progress.gif');
+            background-repeat: no-repeat;
+            height: 0;
+            margin: 110px auto 15px;
+            overflow: hidden;
+            padding: 230px 0 0;
+            position: relative;
+            width: 540px;
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
 

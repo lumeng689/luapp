@@ -54,11 +54,16 @@ require.config({
             ],
             exports: 'jQuery.fn.validator'
         },
-        ztree: {
+        'jquery.uriAnchor': {
             deps: [
                 'jquery'
             ],
-            exports: 'jQuery.fn.zTree'
+            exports: 'jQuery.fn.uriAnchor'
+        },
+        ztree: {
+            deps: [
+                'jquery'
+            ]
         },
         backgrid: {
             deps: [
@@ -88,12 +93,14 @@ require.config({
     ],
     paths: {
         jquery: './node_modules/jquery/dist/jquery',
+        'jquery.uriAnchor': './lib/jquery.uriAnchor',
         underscore: './node_modules/underscore/underscore',
         'underscore.string': './node_modules/underscore.string/dist/underscore.string',
         backbone: './node_modules/backbone/backbone',
         backboneLocalstorage: './node_modules/backbone.localstorage/backbone.localStorage',
         'backbone.radio': './node_modules/backbone.radio/build/backbone.radio',
         'backbone.paginator': './node_modules/backbone.paginator/lib/backbone.paginator',
+        'backbone.syphon': './node_modules/backbone.syphon/lib/backbone.syphon',
         //'backbone.service': './node_modules/backbone.service/dist/backbone.service',
         ext: './lib/ext',
         bootstrap: '../vendor/bootstrap-3.3.5-dist/js/bootstrap',

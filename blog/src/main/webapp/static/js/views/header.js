@@ -24,7 +24,6 @@ define([
         //    all: 'render'
         //},
         initialize: function () {
-            debugger;
             //var me = this;
             //this.collection.on('sync', function () {
             //    debugger;

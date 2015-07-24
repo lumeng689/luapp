@@ -11,9 +11,25 @@ define([
     var index = Marionette.ItemView.extend({
         //el: "#main",
         template: Templates.index,
+        ui:{
+            showMask: '#showMask'
+        },
+        events: {
+            'click @ui.showMask' : 'showMask'
+        },
         className: 'index',
         initialize: function () {
             console.log('...index init....');
+            debugger;
+            this.triggerMethod('select:menu', 'index');
+        },
+        showMask: function(){
+            $("#mask").css("height",$(document).height());
+            $("#mask").css("width",$(document).width());
+            $("#mask").show();
+        },
+        hideMask: function(){
+            $("#mask").hide();
         }
     });
 
